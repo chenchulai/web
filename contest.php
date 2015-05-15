@@ -9,6 +9,9 @@
     <meta name="author" content="">
     <title>竞赛</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/offcanvas.css" type="text/css">
     <style type="text/css">
         .contestCenter{ margin:0 auto;}
@@ -29,8 +32,6 @@
 include("footer.html");
 ?>
 </div><!--/.container-->
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
