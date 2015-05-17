@@ -18,9 +18,40 @@
 </head>
 
   <body>
+<<<<<<< HEAD:index.php
 <?php
 include("./top.html");
 ?>
+=======
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="./index.html">主页</a>
+          </div>
+          <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
+                  <li><a href="problem.php">问题</a></li>
+                  <li><a href="#">状态</a></li>
+                  <li><a href="#">排名</a></li>
+                  <li><a href="contest.php">竞赛</a></li>
+                  <li><a href="#">作业</a></li>
+                  <li><a href="#">FAQ</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="./login.html">登录</a></li>
+                  <li><a href="./register.html">注册</a></li>
+              </ul>
+          </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+  </nav><!-- /.navbar -->
+
+>>>>>>> 9810d22d9d214677a1d1a5c36c5303520877d812:index.html
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
