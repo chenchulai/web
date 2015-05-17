@@ -20,14 +20,14 @@
 					$this->con = mysqli_connect("127.0.0.1", "root", "root") or			
 		   				die("Could not connect: " . mysqli_error($this->con ));
 					mysqli_query($this->con, "SET NAMES 'utf8'");
-					mysqli_select_db($this->con, "test") or die("Could not select database");
-				}		
+					mysqli_select_db($this->con, "oj") or die("Could not select database");
+                    //echo "Success";
+				}
 			}	
 		}
 		public function GetData($query) 
 		{
 			$this->getConn();
-			
 			$result = mysqli_query($this->con, $query) or die ('Can not Get Data!');
 			return $result;
 		}		
