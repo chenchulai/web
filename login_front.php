@@ -1,3 +1,8 @@
+<?php
+session_start();
+session_destroy();
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -14,7 +19,7 @@
 
   <body>
 <?php
-include("./top.html");
+include("./top.php");
 ?>
   <div class="container">
     <h3 class="text-center">用户登录</h3>

@@ -7,18 +7,26 @@ $check = array('user','password');
 validatePostGo($check,'./login_front.php');
 
 $db = new DB();
-
 $user = $db->check_input($_POST['user']);
 $password = $_POST['password'];
-if($_POST['userType'] == 'account')
+if($_POST['userType'] == 'account') {
     $tablename = 'account';
-if($_POST['userType'] == 'teacher')    
+    $name='userName';
+    $ID='userID';
+}
+if($_POST['userType'] == 'teacher')  {
     $tablename = 'teacher';
-if($_POST['userType'] == 'admin')
+    $name='teacherName';
+    $ID='teacherID';
+}
+if($_POST['userType'] == 'admin'){
     $tablename = 'admin';
+    $name='adminName';
+    $ID='adminID';
+}
 
-$sql = sprintf("select * from %s where userName = %s",$tablename,$user);
 
+$sql = sprintf("select * from %s where %s = '%s'",$tablename,$name,$user);
 $result = $db->query($sql);
 if(!mysqli_num_rows($result)){
     $msg = "该用户不存在，请重新登录！";
@@ -29,26 +37,15 @@ if(!mysqli_num_rows($result)){
 
 $line = mysqli_fetch_assoc($result);
 
-if($password != $line['userPassword']){
+if($password != $line['teacherPassword']){
     $msg = "密码错误，请重新登录";
     $path = "./login_front.php";
     header("location:./hint.php?msg=$msg&path=$path");
     die;
 }
-
-$_SESSION['user'] = $user;
-$_SESSION['userType'] == $_POST['userType'];
-
-if($_POST['userType'] == 'account'){
-    header('location:./index.php');
-    die;
-}
-if($_POST['userType'] == 'teacher'){
-    
-}
-if($_POST['userType'] == 'admin'){
-    
-}
+$_SESSION[$name] =$_POST['user'];
+$_SESSION[$ID] = $line['teacherID'];
+header("location:./index.php");
 ?>
 
 

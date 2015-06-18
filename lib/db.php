@@ -1,4 +1,5 @@
 <?php
+@header('Content-type: text/html;charset=UTF-8');
 class DB{
     private $host = "localhost";
     private $user = "root";
@@ -28,7 +29,6 @@ class DB{
         $result = mysqli_query($this->conn, $query) or die ('can not get data! ');
        return $result; 
     }
-
     public function free_result($result){
         mysqli_free_result($result);
     }
@@ -55,7 +55,7 @@ class DB{
             $value = stripcslashes($value);
         }
         $this->getConn();
-        $value ="'". mysqli_real_escape_string($this->conn,$value). "'";
+        $value = mysqli_real_escape_string($this->conn,$value);
         return $value;
     }
 

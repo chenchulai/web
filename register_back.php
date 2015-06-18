@@ -27,7 +27,7 @@ $result = $db->query($sql);
 
 //用户名被占用
 if(mysqli_num_rows($result)){
-    $msg = "该用户名已经被占有，请重新登录";
+    $msg = "该用户名已经被占有，请重新注册";
     $path ="./register_front.php";
     header("location:./index.html?msg=$msg&path=$path");
     die;

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -14,57 +17,162 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
     <link rel="stylesheet" href="css/offcanvas.css" type="text/css">
+    <script src="contest.js" type="text/javascript"></script>
+    <script language="JavaScript">
+        function ssff(){
+            window.showModalDialog("test.html",null,"dialogHeight:300px;dialogWidth:850px;status:no;scroll:yes;resizable:yes;help:no;center:yes;")
+        /*父窗体向子窗体传值
+       1. window.showModalDialog('ChildPage.htm',document.getElementById('txtInput').value);
+         document.getElementById('txtInput').value=window.dialogArguments ;
+        2.var args = new Array();
+         args[0] = document.getElementById('txtInput').value;
+         window.showModalDialog('ChildPage.htm',args);
+         document.getElementById('txtInput').value=window.dialogArguments[0] ;
+         3.var obj = new Object();
+         obj.name = document.getElementById('txtInput').value;
+         window.showModalDialog('ChildPage.htm',obj);
+         var obj = window.dialogArguments;
+         document.getElementById('txtInput').value=obj.name ;
+         子窗体向父窗体传值
+         var obj = new Object();
+         obj.name = document.getElementById('txtInput').value;
+         var result = window.showModalDialog('ChildPage.htm',obj);
+         document.getElementById('txtInput').value = result.name;
+         var obj = window.dialogArguments;
+         document.getElementById('txtInput').value=obj.name ;
+
+         var obj = new Object();
+         obj.name = document.getElementById('txtInput').value;
+         window.returnValue = obj;
+         window.close();
+         */
+        }
+    </script>
     <style type="text/css">
-        .contestCenter{ margin:0 auto;}
+        .contestCenter{ margin:0 auto; padding-top: 70px;}
         p{text-align:center; line-height:50px;}
+        #clock{border-style: hidden;background-color: #ffffff;}
+        .center{text-align: center}
+        .newContest{float: right; text-align: right;margin-top: 20px;}
+        table{margin-top:10px;line-height:300%;border:1px solid #e2e2e2}
+        table,tr,th,td{text-align: center;}
+        .title{border-bottom: 1px solid #e2e2e2;}
+        .clearfix:after { clear: both;content: ".";display: block;height: 0;visibility: hidden;}
     </style>
 </head>
 
-<body>
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">主页</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="./problemList.php">问题</a></li>
-                <li><a href="#">状态</a></li>
-                <li><a href="#">排名</a></li>
-                <li><a href="contest.php">竞赛</a></li>
-                <li><a href="#">作业</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="./login.html">登录</a></li>
-                <li><a href="./register.html">注册</a></li>
-            </ul>
-        </div><!-- /.nav-collapse -->
-    </div><!-- /.container -->
-</nav><!-- /.navbar -->
+<body onload="startTime()">
 <?php
-    require_once("link_mysql.php");
+    include("top.php");
+    require_once("./lib/link_mysql.php");
 ?>
+
 <div class="container contestCenter">
+    <div>
+        <form>
+            <div><h3 class="center">现在时间:<input type="text" id="clock" value="startTime()" disabled="disabled"></h3></div>
+            <?php
+                if(isset($_SESSION['teacherName']))
+                    echo "<div class='clearfix'><span class='newContest'><button onclick='ssff()'>新建</button></span></div>";
+                else
+                    echo "<div class='clearfix'><span class='newContest'><h4>新建</h4></span></div>";
+            ?>
+
+            <div>
+                <table class="table-striped table1">
+                   <tr class="row title">
+                        <td class="col-md-1 col-xs-1">ID</td>
+                        <td class="col-md-4 col-xs-4">标题</td>
+                        <td class="col-md-2 col-xs-2">开始时间</td>
+                        <td class="col-md-2 col-xs-2">结束时间</td>
+                        <td class="col-md-2 col-xs-2">竞赛状态</td>
+                        <td class="col-md-1 col-xs-1">是否公开</td>
+                    </tr>
+                    <?php
+                    require_once("./lib/link_mysqli.php");
+                    $db = new DB();
+                    $strSQL=sprintf('select * from contest');
+                    $result=$db->GetData($strSQL);
+                    $count=$result->num_rows;
+                    $records=1;
+                    $countPage=ceil($count/$records);
+                    if(isset($_REQUEST['page'])==true){
+                        $page=$_REQUEST['page'];
+                        if(is_numeric($page)) {
+                            $page =intval(trim($page));
+                            if($page>$countPage){
+                                $page=$countPage;
+                            }
+                            else if($page<1){
+                                $page=1;
+                            }
+                        }
+                        else
+                            $page=1;
+                    }
+                    else{
+                        $page=1;
+                    }
+                    if($page+1>$countPage)
+                        $next=$page;
+                    else
+                        $next=$page+1;
+                    if($page-1<1)
+                        $previous = $page;
+                    else
+                        $previous = $page-1;
+                    $nStart=($page-1)*$records;
+                    $strSQL=sprintf('select * from contest order by contestID ASC limit %d , %d',$nStart,$records);
+                    $contest = $db->GetData($strSQL);
+                    while($line=$contest->fetch_assoc()){
+                       echo "<tr class='row'>
+                        <td class='col-md-1 col-xs-1'>{$line['contestID']}</td>
+                        <td class='col-md-4 col-xs-4'>{$line['contestName']}</td>
+                        <td class='col-md-2 col-xs-2'>{$line['contestStartTime']}</td>
+                        <td class='col-md-2 col-xs-2'>{$line['contestEndTime']}</td>
+                        <td class='col-md-2 col-xs-2'>{$line['contestStatus']}</td>
+                        <td class='col-md-1 col-xs-1'>{$line['issafe']}</td>
+                    </tr>";
+                    }
+                    ?>
+                </table>
+            </div>
+            <nav>
+                <ul class="pagination">
+                    <?php
+                    if($page==1)
+                        echo "<li class='disabled'>";
+                    else
+                        echo "<li>";
+
+                    echo"<a href='contest.php?page=$previous' aria-label='Previous'>";
+                    ?>
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="contest.php"><?php echo $page; ?><span class="sr-only">(current)</span></a></li>
+                    <?php
+                    for($i=$page+1;$i<$count&$i<$page+5;$i++){
+                        echo "<li><a href='contest.php?page=$i'>{$i}</a></li>";
+                    }
+                    if($page==$countPage+1)
+                        echo "<li class='disabled'>";
+                    else
+                        echo "<li>";
+
+                       echo"<a href='contest.php?page=$next' aria-label='Next'>";
+                        ?>
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </form>
+    </div>
+</div>
 <?php
-	for($i=0;$i<100;$i++){
-		echo "<p>这是第".$i."条记录</p>";
-	}
+include("footer.html");
 ?>
-
-</div><!--/.container-->
-
-<footer class="panel-footer text-center" >
-    <a href="http://www.zhku.edu.cn/depa/jishuanxi/index.htm">
-        <p>Copyright © 2015仲恺农业工程学院计算科学学院</p>
-    </a>
-</footer>
 
 
 </body>

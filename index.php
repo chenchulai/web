@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -18,10 +21,10 @@
 </head>
 
   <body>
-
 <?php
-include("./top.html");
+include("./top.php");
 ?>
+
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
@@ -33,7 +36,7 @@ include("./top.html");
             <h1>ACM大学生国际程序设计竞赛</h1>
             <p>ACM国际大学生程序设计竞赛（英语：ACM International Collegiate Programming Contest, ICPC）是由美国计算机协会（ACM）主办的，一项旨在展示大学生创新能力、团队精神和在压力下编写程序、分析和解决问题能力的年度竞赛。经过30多年的发展，ACM国际大学生程序设计竞赛已经发展成为最具影响力的大学生计算机竞赛。赛事目前由IBM公司赞助。 </p>
           </div>
-        </div><!--/.col-xs-12.col-sm-9-->
+        </div>
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <br /><br />
@@ -47,12 +50,15 @@ include("./top.html");
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>
           </div>
-        </div><!--/.sidebar-offcanvas-->
-      </div><!--/row-->
-</div><!--/.container-->
+        </div>
+      </div>
+</div>
+
+
+
+
 <?php
 include("./footer.html");
 ?>
-
   </body>
 </html>
