@@ -11,6 +11,10 @@
     <title>仲恺ACM首页</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="css/offcanvas.css" type="text/css">
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+ <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="js/offcanvas.js"></script>
 </head>
 
   <body>
@@ -65,7 +69,7 @@ include("./top.html");
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <a href="#"><button type="button" class="btn btn-link ">忘记密码</button>
+                <a href="./forgetMail_front.php"><button type="button" class="btn btn-link ">忘记密码</button>
             </div>
         </div>
     </div>
@@ -74,9 +78,5 @@ include("./top.html");
 <?php
 include("./footer.html");
 ?>
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
- <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="js/offcanvas.js"></script>
   </body>
 </html>

@@ -11,6 +11,10 @@
     <title>仲恺ACM首页</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
       <link rel="stylesheet" href="css/offcanvas.css" type="text/css">
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+ <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script src="js/offcanvas.js"></script>
 </head>
 
   <body>
@@ -88,7 +92,7 @@ include("./top.html");
             <input type="submit" class="btn btn-success col-sm-8" value="注册"/>
            </div>
            <div class="col-sm-4">
-               <h5>已有帐号?<a class="btn-link" href="./login.html">登录</a></h5>
+               <h5>已有帐号?<a class="btn-link" href="./login_front.php">登录</a></h5>
             </div>
         </div>
         </div>
@@ -98,9 +102,5 @@ include("./top.html");
 <?php
 include("./footer.html");
 ?>
-  <script src="js/jquery-2.1.4.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
- <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
-  <script src="js/offcanvas.js"></script>
   </body>
 </html>
