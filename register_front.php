@@ -30,10 +30,8 @@ include("./top.html");
            用户名: 
            </p>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
+        <div class="col-md-3 form-group">
                 <input type="TEXT" name="user" placeholder="请填写用户名字符数少于64" class="form-control" required>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -42,10 +40,8 @@ include("./top.html");
            个人说明: 
            </p>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
+        <div class="col-md-3 form-group">
                 <TEXTAREA name='moto' rows="2" cols="29px" placeholder="请填入少于100字符的内容"></textarea>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -54,10 +50,8 @@ include("./top.html");
            密码: 
            </p>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
+        <div class="col-md-3 form-group">
                 <input type="PASSWORD" name="password" placeholder="请填写长度少于20位密码" class="form-control" required>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -66,10 +60,8 @@ include("./top.html");
            确认密码: 
            </p>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
+        <div class="col-md-3 form-group">
                 <input type="PASSWORD" name="checkPassword" placeholder="请再次确认密码" class="form-control" required>
-            </div>
         </div>
     </div>
 
@@ -79,10 +71,8 @@ include("./top.html");
            用户邮箱: 
            </p>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
+        <div class="col-md-3 form-group">
                 <input type="TEXT" name="email" placeholder="该邮箱用于找回用户密码" class="form-control" required>
-            </div>
         </div>
     </div>
     <div class="form-group">

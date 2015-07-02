@@ -35,7 +35,7 @@ include("./top.php");
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <select name="userType" class="dropdown">
+                <select name="userType" class="form-control">
                     <option value="account">普通用户</option>
                     <option value="teacher">教师</option>
                     <OPTION value="admin">管理员</option>
