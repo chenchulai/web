@@ -1,17 +1,2 @@
-[12-Jun-2015 20:01:49 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:49 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:51 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:55 PRC] PHP Warning:  require_once(../lib/link_mysqli.php): failed to open stream: No such file or directory in D:\WWW\web\page.php on line 3
-[12-Jun-2015 20:01:55 PRC] PHP Fatal error:  require_once(): Failed opening required '../lib/link_mysqli.php' (include_path='.;C:\php\pear') in D:\WWW\web\page.php on line 3
-[12-Jun-2015 21:34:26 PRC] PHP Parse error:  syntax error, unexpected '<' in D:\WWW\web\newContest.php on line 121
-[12-Jun-2015 21:34:27 PRC] PHP Parse error:  syntax error, unexpected '<' in D:\WWW\web\newContest.php on line 121
-[12-Jun-2015 21:57:20 PRC] PHP Parse error:  syntax error, unexpected ')', expecting ';' in D:\WWW\web\newContest.php on line 123
+[30-Jun-2015 09:56:53 PRC] PHP Warning:  include(./top.html): failed to open stream: No such file or directory in D:\WWW\web\hint.php on line 19
+[30-Jun-2015 09:56:53 PRC] PHP Warning:  include(): Failed opening './top.html' for inclusion (include_path='.;C:\php\pear') in D:\WWW\web\hint.php on line 19

@@ -3,7 +3,6 @@ session_start();
 if(!isset($_SESSION["teacherName"])){
     header("location:index.php");
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -17,66 +16,60 @@ if(!isset($_SESSION["teacherName"])){
     <title>新建比赛</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/offcanvas.css" type="text/css">
-    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="js/laydate.js"></script>
-    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
-    <link href="css/xlstablefilter.css" rel="stylesheet" type="text/css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/jquery.xlstablefilter.js"></script>
+    <style type="text/css">
+        .marginTop{margin-top: 50px;}
+        .spanMargin{margin-left: 3%;}
+        #isPublished,#notPublished{margin-left:8px; }
+        #main div{margin-bottom: 10px;}
+        #contestExplain{width: 100%;height: 80px;resize: none;}
+        .bg{position: absolute; top:0px; left: 0px;z-index: 3;width: 100%;height: 100%;opacity:0.4;background:#ffffff;MozOpacity:0.4;display: none;}
+        .box{border:1px solid gray; z-index:5;position:absolute; top:20%; left:10%; background: #CCC; width:80%; padding:20px;text-align:center;display: none;}
+        .floatLeft{float: left;}
+        .problem{width: 100%; overflow: auto;height: 100%;border: 1px solid gray;}
+    </style>
     <script language="JavaScript" type="text/javascript">
-        var request=false;
-        try{
-            request = new XMLHttpRequest();
-        } catch (trymicrosoft) {
-            try {
-                request = new ActiveXObject("Msxml2.XMLHTTP");//较新的ie
-            } catch (othermicrosoft) {
-                try {
-                    request = new ActiveXObject("Microsoft.XMLHTTP");//较老的ie
-                } catch (failed) {
-                    request = false;
-                }
-            }
-        }
-        if(!request)
-            alert("Error initializing XMLHttpRequest!");//创建具有错误处理能力的XMLHttpRequest。
-
         var page=1;
+        var countPage;
         function loadHTML(){
-            document.getElementById("bg").style.display="block";
-            document.getElementById("problemList").style.display="block";
-            var url="page.php?page=1";
-            request.open("GET",url,true);
-            request.onreadystatechange=stateChanged;
-            request.send(null);
+            $("#bg").hide();
+            $("#problemList").show();
+            $.ajax({
+                url:"page.php",
+                type:"GET",
+                data:{page:page},
+                success:stateChanged
+            });
         }
-        function NextHTML(){
-            page=page+1;
-            var url="page.php?page="+page;
-            request.open("GET",url,true);
-            request.onreadystatechange=stateChanged1;
-            request.send(null);
+
+        function stateChanged(dataObj){
+            var Obj=dataObj.split(',');
+            countPage=Obj[0];
+           $("#page"+page).html(Obj[1]);
+        }
+       function NextHTML(){
+           if(page+1>countPage)
+                return;
+           $("#page"+page).hide();
+           page=page+1;
+          if($("#page"+page).html()){
+              $("#page" +page).show();
+              return;
+           }
+          else{
+               $("<tbody id=page"+page+"></tbody>").appendTo($("#table"));
+          }
+           loadHTML();
         }
         function PreHTML(){
+            if(page-1<=0)
+                return;
             page=page-1;
-            var url="page.php?page="+page;
-            request.open("GET",url,true);
-            request.onreadystatechange=stateChanged;
-            request.send(null);
-        }
-
-        function stateChanged(){
-            if (request.readyState == 4) {
-                if (request.status == 200) {
-                    //var response = request.responseText.split("||");
-                  document.getElementById("page").innerHTML=request.responseText;
-                   // document.getElementsByName("s1").innerHTML=response[1];
-                } else
-                    alert("status is " + request.status);
-            }
+            $("#page"+page).show();
+           //loadHTML();
         }
 
         function confirmButton(){
@@ -89,15 +82,6 @@ if(!isset($_SESSION["teacherName"])){
             document.getElementById("problemList").style.display="none";
         }
     </script>
-    <style type="text/css">
-        .marginTop{margin-top: 50px;}
-        .spanMargin{margin-left: 3%;}
-        #isPublished,#notPublished{margin-left:8px; }
-        #main div{margin-bottom: 10px;}
-        #contestExplain{width: 30%;height: 80px;resize: none;}
-        .bg{position: absolute; top:0px; left: 0px;z-index: 3;width: 100%;height: 100%;opacity:0.4;background:#000;MozOpacity:0.4;display: none;}
-        .box{border:1px solid gray; z-index:5;position:absolute; top:20%; left:10%; background: #CCC; width:80%; padding:20px;text-align:center;display: none;}
-    </style>
 </head>
 <body>
 <div class="bg" id="bg"></div>
@@ -115,12 +99,23 @@ include("top.php");
         <span class="spanMargin">应用类型：</span>
         <select name="typeOf"><option value="竞赛">竞赛</option><option value="作业">作业</option></select>
     </div>
-    <div>竞赛说明：<textarea id="contestExplain"></textarea><input type="button" value="选择题目" onclick="loadHTML()"></div>
+    <div class="col-md-6">
+        <div>竞赛说明：</div>
+        <div><textarea id="contestExplain"></textarea></div>
+    </div>
+    <div class="floatLeft col-md-6">
+        <div>
+            <input type="button" value="选择题目" onclick="loadHTML()">
+            <input type="button" value="一键排序" onclick="">
+            <input type="button" value="重置序号" onclick="">
+        </div>
+        <div class="problem"></div>
+    </div>
 </div>
 
 <div class="box container" id="problemList">
     <div class="col-md-7 content1">
-        <table class="table table-striped" id="example2">
+        <table class="table table-striped" id="table">
             <thead>
             <tr>
                 <th>&nbsp;</th>
@@ -132,7 +127,7 @@ include("top.php");
                 <th>使用状态</th>
             </tr>
             </thead>
-            <tbody id="page"></tbody>
+            <tbody id="page1"></tbody>
         </table>
         <div><a onclick="NextHTML()" href="#">下一页</a><a onclick="PreHTML()" href="#">上一页</a></div>
         <div><input type="button" value="确定" onclick="confirmButton()"><input type="button" value="取消" onclick="cancelButton(this)"></div>
@@ -170,15 +165,6 @@ include("footer.html");
     };
     laydate(start);
     laydate(end);
-</script>
-<script type="text/javascript">
-    <!--
-    $(function() {
-        $("#example2").xlsTableFilter({
-            checkStyle: "custom"
-        });
-    });
-    //-->
 </script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 <?php
 require_once("./lib/link_mysqli.php");
+                    $data = array();
                     $db = new DB();
                     $strSQL=sprintf('select * from problem');
                     $result=$db->GetData($strSQL);
                     $count=$result->num_rows;
                     $records=3;
                     $countPage=ceil($count/$records);
+                    echo $countPage,',';
                     if(isset($_REQUEST['page'])==true){
                         $page=$_REQUEST['page'];
                         if(is_numeric($page)) {
@@ -34,22 +36,16 @@ require_once("./lib/link_mysqli.php");
                     $nStart=($page-1)*$records;
                     $strSQL=sprintf('select * from problem order by proID ASC limit %d , %d',$nStart,$records);
                     $problem = $db->GetData($strSQL);
+                    $data=array();
                     while($line=$problem->fetch_assoc()){
-                        if($line['proTotalSubmit']==0){
-                            $successRate=0;
-                        }
-                        else {
-                            $successRate = $line['proTotalAC'] / $line['proTotalSubmit'];
-                        }
-                        echo "<tr>
-                    <td><input type='checkbox' name='checkedBox' value='{$line['proID']}' id='checked{$line['proID']}'></td>
-                    <td>{$line['proID']}</td>
-                    <td><a href='problem.php?id={$line['proID']}'>{$line['proTitle']}</a></td>
-                    <td>{$line['proSort']}</td>
-                    <td>{$line['proTotalAC']}</td>
-                    <td>{$line['proTotalSubmit']}</td>
-                    <td>{$successRate}</td>
-                    </tr>";
+                    echo "<tr>
+                            <td><input type='checkbox' name='checkedBox' value='{$line['proID']}' id='checked{$line['proID']}'></td>
+                            <td>{$line['proID']}</td>
+                            <td><a href='problem.php?id={$line['proID']}'>{$line['proTitle']}</a></td>
+                            <td>{$line['proSort']}</td>
+                            <td>{$line['proTotalAC']}</td>
+                            <td>{$line['proTotalSubmit']}</td>
+                            </tr>";
                     }
                     $problem->free_result();
                     $db->__destruct();
