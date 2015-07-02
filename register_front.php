@@ -19,7 +19,7 @@
 
   <body>
 <?php
-include("./top.html");
+include("./top.php");
 ?>
   <div class="container">
     <h2 class="text-center">用户注册</h2>
@@ -90,7 +90,7 @@ include("./top.html");
     </form>
 </div><!--/.container-->
 <?php
-include("./footer.html");
+include("./footer-fix.html");
 ?>
   </body>
 </html>

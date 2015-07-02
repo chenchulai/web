@@ -16,7 +16,7 @@
 <body>
 
 <?php
-include('./top.html');
+include('./top.php');
 ?>
 
 <div class="container">

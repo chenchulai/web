@@ -80,7 +80,7 @@ include("./top.php");
     </form>
   </div>
 <?php
-include("./footer.html");
+include("./footer-fix.html");
 ?>
   </body>
 </html>
