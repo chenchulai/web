@@ -10,33 +10,40 @@ $db = new DB();
 
 $user = $db->check_input($_POST['user']);
 $password = $_POST['password'];
-if($_POST['userType'] == 'account')
+if($_POST['userType'] == 'account'){
     $tablename = 'account';
-if($_POST['userType'] == 'teacher')    
+    $name_col = 'userName';
+    $password_col = 'userPassword';
+}
+if($_POST['userType'] == 'teacher') {
     $tablename = 'teacher';
-if($_POST['userType'] == 'admin')
+    $name_col = 'teacherName';
+    $password_col ='teacherPassword';
+}
+if($_POST['userType'] == 'admin'){
     $tablename = 'admin';
+    $name_col = 'adminName';
+    $password_col = 'adminPassword';
+}
 
-$sql = sprintf("select * from %s where userName = %s",$tablename,$user);
+$sql = sprintf("select * from %s where %s = %s",$tablename,$name_col,$user);
 
 $result = $db->query($sql);
 if(!mysqli_num_rows($result)){
-    $msg = "该用户不存在，请重新登录！";
+    $msg = "用户名或密码错误，请重新登录！";
     $path = "./login_front.php";
     header("location:./hint.php?msg=$msg&path=$path");
     die;
 }
-
 $line = mysqli_fetch_assoc($result);
-
-if($password != $line['userPassword']){
-    $msg = "密码错误，请重新登录";
+if($password != $line[$password_col]){
+    $msg = "用户名或密码错误，请重新登录";
     $path = "./login_front.php";
     header("location:./hint.php?msg=$msg&path=$path");
     die;
 }
 
-$_SESSION['user'] = $user;
+$_SESSION['user'] = $_POST['user'];
 $_SESSION['userType'] == $_POST['userType'];
 
 if($_POST['userType'] == 'account'){

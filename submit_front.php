@@ -18,7 +18,7 @@
 <body>
 <div class="container">
 <h3 class="text-center">Submit Your Solution</h3>
-<form class="form-horizontal submit" action="#" method="POST">
+<form class="form-horizontal submit" action="./submit_back.php" method="POST">
 <div class="row">
 <div class="col-md-offset-2 col-md-2 text-right">
 Problem ID：
@@ -36,9 +36,9 @@ Language：
 </div>
 <div class="col-sm-4">
 <select name="language" class="form-control">
-<option value="0">c</option>
-<option value="1">c++</option>
-<option value="2">java</option>
+<option value="c">c</option>
+<option value="c++">c++</option>
+<option value="java">java</option>
 </select>
 </div>
 </div>
