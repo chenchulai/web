@@ -1,2 +1,6 @@
-[30-Jun-2015 09:56:53 PRC] PHP Warning:  include(./top.html): failed to open stream: No such file or directory in D:\WWW\web\hint.php on line 19
-[30-Jun-2015 09:56:53 PRC] PHP Warning:  include(): Failed opening './top.html' for inclusion (include_path='.;C:\php\pear') in D:\WWW\web\hint.php on line 19
+[07-Jul-2015 12:43:31 PRC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent in D:\WWW\web\newProblem.php on line 2
+[07-Jul-2015 12:43:37 PRC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent in D:\WWW\web\newProblem.php on line 2
+[07-Jul-2015 12:43:37 PRC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent in D:\WWW\web\newProblem.php on line 2
+[07-Jul-2015 12:43:37 PRC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent in D:\WWW\web\newProblem.php on line 2
+[07-Jul-2015 12:43:37 PRC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent in D:\WWW\web\newProblem.php on line 2
+[07-Jul-2015 13:10:42 PRC] PHP Warning:  nl2br() expects parameter 1 to be string, array given in D:\WWW\web\newProblem_back.php on line 27

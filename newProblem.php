@@ -23,25 +23,61 @@ if(!isset($_SESSION['teacherName'])){
     <script src="bootstrap-3.3.4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="js/offcanvas.js"></script>
     <script type="text/javascript">
+        $(document).ready(function(){
+            var title=$("#proTitle");
+            var sort=$("#proSort");
+            var description=$("#proDescription");
+            var input=$("#proInput");
+            var output=$("#proOutput");
+            var sameInput=$("#proSameInput");
+            var sameOutput=$("#proSameOutput");
+            var inputData=$("#inputTestData");
+            var outData=$("#outputTestData");
+            var timeLimit=$("#proTimeLimit");
+            var memoryLimit=$("#proMemoryLimit");
+            $("#show").click(function(){
+                $.ajax({
+                    url:"newProblem_back.php?state=show",
+                    type:"GET",
+                    dataType:"JSON",
+                    data:{proTitle:title.val()},
+                    success:function(data){
+                        sort.val(data.proSort);
+                        description.val(data.proDescription);
+                        input.val(data.proInput);
+                        output.val(data.proOutput);
+                        sameInput.val(data.proSameInput);
+                        sameOutput.val(data.proSameOutput);
+                        inputData.val(data.inputTestData);
+                        outData.val(data.outputTestData);
+                        timeLimit.val(data.proTimeLimit);
+                        memoryLimit.val(data.proMemoryLimit);
+                        
+                    }
+                });
+            });
+            $("#insert").click(function(){window.confirm("确定插入新问题");$("#myform").action="newProblem.php?state=insert";});
+            $("#modify").click(function(){window.confirm("确定修改问题");$("#myform").action="newProblem.php?state=modify";});
+            $("#del").click(function(){window.confirm("确定删除问题");$("#myform").action="newProblem.php?state=del";});
+        });
+
         function select(){
-            var t = document.getElementById("selectID");
-            var i = document.getElementById("proSort");
-            eval(i).value=t.options[t.selectedIndex].value;
-            //this.parentNode.nextSibling.value=this.value
+            $("#proSort").val($("#selectID").val());
+
         }
         function checkNULL(){
-            var title=document.getElementById("proTitle");
-            var sort=document.getElementById("proSort");
-            var description=document.getElementById("proDescription");
-            var input=document.getElementById("proInput");
-            var output=document.getElementById("proOutput");
-            var sameInput=document.getElementById("proSameInput");
-            var sameOutput=document.getElementById("proSameOutput");
-            var inputDate=document.getElementById("inputTestDate");
-            var outDate=document.getElementById("outputTestDate");
-            var timeLimit=document.getElementById("proTimeLimit");
-            var memoryLimit=document.getElementById("proMemoryLimit");
-            var arr=new Array(title,sort,description,input,output,sameInput,sameOutput,inputDate,outDate,timeLimit,memoryLimit);
+            var title=$("#proTitle");
+            var sort=$("#proSort");
+            var description=$("#proDescription");
+            var input=$("#proInput");
+            var output=$("#proOutput");
+            var sameInput=$("#proSameInput");
+            var sameOutput=$("#proSameOutput");
+            var inputData=$("#inputTestData");
+            var outData=$("#outputTestData");
+            var timeLimit=$("#proTimeLimit");
+            var memoryLimit=$("#proMemoryLimit");
+            var arr=new Array(title,sort,description,input,output,sameInput,sameOutput,inputData,outData,timeLimit,memoryLimit);
             var arr1=new Array("hint","hint1","hint2","hint3","hint4","hint5","hint6","hint7","hint8","hint9","hint10");
             for(var i=0;i<=10;i++){
                 if(arr[i].value==''){
@@ -75,7 +111,7 @@ if(!isset($_SESSION['teacherName'])){
         textarea{height:100px; width: 500px; resize: none;}
         span{display: inline-block; width: 300px; text-align: right;line-height: 30px; vertical-align: top; font-size: 16px;}
         .marginTop{margin-top: 50px;}
-        #selectID,#proTitle,#proSort,#proDescription,#proInput,#proOutput,#proSameInput,#proSameOutput,#inputTestDate,#outputTestDate,#proHint,#proTimeLimit,#proMemoryLimit,#isPublish,#notPublish{margin-top:5px;}
+        #selectID,#proTitle,#proSort,#proDescription,#proInput,#proOutput,#proSameInput,#proSameOutput,#inputTestData,#outputTestData,#proHint,#proTimeLimit,#proMemoryLimit,#isPublish,#notPublish{margin-top:5px;}
         #proTitle{width: 200px;}
         #proTimeLimit,#proMemoryLimit{width: 150px;}
         #MemoryLimit{width: 200px;}
@@ -93,7 +129,7 @@ if(!isset($_SESSION['teacherName'])){
    include("top.php");
 ?>
 <div class="container marginTop">
-    <form action="newProblem_back.php" method="post" onsubmit="return checkNULL()">
+    <form id="myForm" method="post" onsubmit="return checkNULL()">
         <div style="position:relative;"><span>标题:</span><input type="text" name="proTitle" id="proTitle" autofocus="autofocus">
             <span id="sort">题目分类:</span>
             <span id="select">
@@ -121,12 +157,12 @@ if(!isset($_SESSION['teacherName'])){
         <div><span>输出描述:</span><textarea name="proOutput" id="proOutput"></textarea><span id="hint4">*输出描述</span></div>
         <div><span>输入样例:</span><textarea name="proSameInput" id="proSameInput"></textarea><span id="hint5">*输入样例</span></div>
         <div><span>输出样例:</span><textarea name="proSameOutput" id="proSameOutput"></textarea><span id="hint6">*输出样例</span></div>
-        <div><span>输入测试:</span><textarea name="inputTestDate" id="inputTestDate">无</textarea><span id="hint7">*输入测试</span></div>
-        <div><span>输出测试:</span><textarea name="outputTestDate" id="outputTestDate">无</textarea><span id="hint8">*输出测试</span></div>
+        <div><span>输入测试:</span><textarea name="inputTestData" id="inputTestData">无</textarea><span id="hint7">*输入测试</span></div>
+        <div><span>输出测试:</span><textarea name="outputTestData" id="outputTestData">无</textarea><span id="hint8">*输出测试</span></div>
         <div><span>提示:</span><textarea name="proHint" id="proHint">无</textarea>
         <div><span>时间限制:</span><input type="text" name="proTimeLimit" id="proTimeLimit"><span id="MemoryLimit">内存限制:</span><input type="text" name="proMemoryLimit" id="proMemoryLimit"><span id="hint9">*时间限制</span><span id="hint10">*内存限制</span></div>
         <div><span>是否开放:</span><input type="radio" name="isPublish" value="是" id="isPublish" checked="checked">是<input type="radio" name="isPublish" value="否" id="notPublish">否</div>
-        <div><span>&nbsp;</span><input type="submit" value="提交"><input id="isReset"type="reset" value="重置"><input id="preview" type="button" value="预览" onclick="showDialog('newProblem_show.php')"></div>
+        <div><span>&nbsp;</span><input type="button" value="查看" id="show"><input type="submit" value="插入" id="insert"><input type="submit" value="修改" id="modify"><input type="submit" value="删除" id="del"><input id="isReset"type="reset" value="重置"><input id="preview" type="button" value="预览" onclick="showDialog('newProblem_show.php')"></div>
     </form>
 </div>
 <?php

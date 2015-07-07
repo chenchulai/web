@@ -26,16 +26,26 @@ if(!isset($_SESSION["teacherName"])){
         #isPublished,#notPublished{margin-left:8px; }
         #main div{margin-bottom: 10px;}
         #contestExplain{width: 100%;height: 80px;resize: none;}
-        .bg{position: absolute; top:0px; left: 0px;z-index: 3;width: 100%;height: 100%;opacity:0.4;background:#ffffff;MozOpacity:0.4;display: none;}
-        .box{border:1px solid gray; z-index:5;position:absolute; top:20%; left:10%; background: #CCC; width:80%; padding:20px;text-align:center;display: none;}
+        .bg{position: absolute; top:0px; left: 0px;z-index: 3;width: 100%;height: 100%;opacity:0.4;background:#000000;MozOpacity:0.4;display: none;}
+        .box{border:1px solid gray; z-index:5;position:absolute; top:20%; left:10%; background: #CCC; width:80%; padding:20px;display: none;}
         .floatLeft{float: left;}
         .problem{width: 100%; overflow: auto;height: 100%;border: 1px solid gray;}
+        #selectPro{display: none;}
+        #clazz{width: 185px;position:relative;left:-205px;}
+        #selectID{width:199px;}
     </style>
     <script language="JavaScript" type="text/javascript">
         var page=1;
         var countPage;
+        var checkArr=new Array();
+        function firstLoad(){
+            if(page==0)
+                return;
+            page=1;
+            loadHTML();
+        }
         function loadHTML(){
-            $("#bg").hide();
+            $("#bg").show();
             $("#problemList").show();
             $.ajax({
                 url:"page.php",
@@ -48,39 +58,105 @@ if(!isset($_SESSION["teacherName"])){
         function stateChanged(dataObj){
             var Obj=dataObj.split(',');
             countPage=Obj[0];
-           $("#page"+page).html(Obj[1]);
+           $("#page").html(Obj[1]);
+            if(checkArr[page]){
+                $("#table input:checkbox").each(function(){
+                    for(var i=0;i<checkArr[page].length;i++){
+                        if($(this).val()== checkArr[page][i]){
+                            $(this).attr("checked","true");
+                        }
+                    }
+                });
+                checkArr[page]=new Array();
+            }
         }
+
        function NextHTML(){
            if(page+1>countPage)
                 return;
-           $("#page"+page).hide();
+           if(!checkArr[page]) checkArr[page]=new Array();
+           $("#table input:checkbox:checked").each(function(){checkArr[page].push($(this).val());});
            page=page+1;
-          if($("#page"+page).html()){
-              $("#page" +page).show();
-              return;
-           }
-          else{
-               $("<tbody id=page"+page+"></tbody>").appendTo($("#table"));
-          }
            loadHTML();
         }
+
         function PreHTML(){
             if(page-1<=0)
                 return;
+            if(!checkArr[page]) checkArr[page]=new Array();
+            $("#table input:checkbox:checked").each(function(){checkArr[page].push($(this).val());});
             page=page-1;
-            $("#page"+page).show();
-           //loadHTML();
+            loadHTML();
         }
 
         function confirmButton(){
-            document.getElementById("bg").style.display="none";
-            document.getElementById("problemList").style.display="none";
+            $("#selectPro").html("");
+            $("#selectTable").html("");
+            if(!checkArr[page]) checkArr[page]=new Array();
+            $("#table input:checkbox:checked").each(function(){checkArr[page].push($(this).val());});
+            $("#bg").hide();
+            $("#problemList").hide();
+           var selectPro=new Array();
+            for(var i=1;i<=countPage;i++){
+                if(checkArr[i]==null)
+                   continue;
+                for(var j=0;j<checkArr[i].length;j++){
+                    selectPro.push(checkArr[i][j]);
+                }
+            }
+            if(selectPro.length==0){
+                $("#selectPro").html("");
+                return;
+            }
+            $.ajax({
+                url:"page.php",
+                type:"GET",
+                data:{selectPro:selectPro},
+                dataType:"JSON",
+                success:showSelect
+            });
         }
 
-        function cancelButton(){
-            document.getElementById("bg").style.display="none";
-            document.getElementById("problemList").style.display="none";
+        function showSelect(Dataobj){
+            var sp="";
+            var current=65;
+            for(var i=0;i<Dataobj.proID.length;i++) {
+               var table = $("#selectTable");
+               var tr = $("<tr></tr>");
+               tr.appendTo(table);
+               $("<td>&nbsp;</td><td>"+Dataobj.proID[i]+"</td><td>"+Dataobj.proTitle[i]+"</td><td>×</td>").appendTo(tr);
+                sp+="<input type='checkbox' name='sortID[]' checked='checked' value="+String.fromCharCode(current++)+">" +
+                "<input type='checkbox' name='selectID[]' checked='checked' value="+Dataobj.proID[i]+">";
+            }
+            $("#selectPro").html(sp);
         }
+        function cancelButton(){
+            $("#bg").hide();
+            $("#problemList").hide();
+        }
+
+        function checkSubmit(){
+            if($("input[name='contestTitle']").val()=="") {
+                alert("请输入标题");
+                return false;
+            }if($("#start").val()==""||$("#end").val()==""){
+                alert("请正确输入时间");
+                return false;
+            }
+            if($("input[name='published']").val()==""){
+                alert("请选择是否私有");
+                return false;
+            }
+            if($("#selectPro").html()==""){
+                alert("请添加题目");
+                return false;
+            }
+            return true;
+        }
+        function select(){
+            $("#clazz").val($("#selectID").val());
+        }
+
     </script>
 </head>
 <body>
@@ -89,50 +165,80 @@ if(!isset($_SESSION["teacherName"])){
 include("top.php");
 ?>
 <div class="container marginTop" id="main">
+    <form action="newContest_back.php" method="post" onsubmit="return checkSubmit()">
     <div>
-        <span>标题：<input type="text" name="contestTitle"></span>
-        <span class="spanMargin">开始时间：</span><input type="text"  id="start">
-        <span class="spanMargin">结束时间：</span><input type="text"  id="end">
+        <span>标题：<input type="text" name="contestTitle" value=""></span>
+        <span class="spanMargin">开始时间：</span><input type="text"  name="startTime" id="start" value="">
+        <span class="spanMargin">结束时间：</span><input type="text"  name="endTime" id="end" value="">
         <span class="spanMargin">是否私有：</span>
-        <input type="radio" name="published" checked="checked" id="isPublished">是
-        <input type="radio" name="published" id="notPublished">否
+        <input type="radio" name="published" id="isPublished" value="1">是
+        <input type="radio" name="published" id="notPublished" value="0">否
         <span class="spanMargin">应用类型：</span>
         <select name="typeOf"><option value="竞赛">竞赛</option><option value="作业">作业</option></select>
     </div>
     <div class="col-md-6">
         <div>竞赛说明：</div>
-        <div><textarea id="contestExplain"></textarea></div>
+        <div><textarea id="contestExplain" name="contestExplain">无</textarea></div>
+        <div><span>面向班级：</span><select id="selectID" onchange="select()">
+                <option value="" checked="checked"></option>
+                <?php
+                require_once("./lib/link_mysqli.php");
+                $db=new DB();
+                $sql="select className from clazz GROUP by className";
+                $result=$db->GetData($sql);
+                while($line=$result->fetch_assoc()){
+                    echo"<option value='{$line['className']}'>{$line['className']}</option>";
+                }
+                $db->FreeResult($result);
+                $db->__destruct();
+                ?>
+            </select>
+            <input type="text" name="clazz" id="clazz">
+        </div>
+        <div><span>团队模式：</span><input type="radio" name="published" id="isPublished" value="1">是
+            <input type="radio" name="published" id="notPublished" value="0">否</div>
     </div>
     <div class="floatLeft col-md-6">
         <div>
-            <input type="button" value="选择题目" onclick="loadHTML()">
+            <input type="button" value="选择题目" onclick="firstLoad()">
             <input type="button" value="一键排序" onclick="">
             <input type="button" value="重置序号" onclick="">
         </div>
-        <div class="problem"></div>
+        <div class="problem">
+            <div id="selectPro"></div>
+            <table id="selectTable" class="table">
+                <tr>
+                    <th>题目排序</th>
+                    <th>题目ID</th>
+                    <th>题目名称</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+        <input type="submit" value="提交">
     </div>
+    </form>
 </div>
 
 <div class="box container" id="problemList">
-    <div class="col-md-7 content1">
+    <div class="content1">
         <table class="table table-striped" id="table">
             <thead>
-            <tr>
-                <th>&nbsp;</th>
-                <th>题目编号</th>
-                <th>题目名称</th>
-                <th>作者</th>
-                <th>题目类型</th>
-                <th>录入时间</th>
-                <th>使用状态</th>
-            </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>题目编号</th>
+                    <th>题目名称</th>
+                    <th>作者</th>
+                    <th>题目类型</th>
+                    <th>录入时间</th>
+                    <th>使用状态</th>
+                </tr>
             </thead>
-            <tbody id="page1"></tbody>
+            <tbody id="page"></tbody>
         </table>
         <div><a onclick="NextHTML()" href="#">下一页</a><a onclick="PreHTML()" href="#">上一页</a></div>
         <div><input type="button" value="确定" onclick="confirmButton()"><input type="button" value="取消" onclick="cancelButton(this)"></div>
     </div>
-    <div class="col-md-4 col-md-offset-1"></div>
 </div>
 <?php
 include("footer.html");

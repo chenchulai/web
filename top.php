@@ -18,7 +18,7 @@
                 <li><a href="#">状态</a></li>
                 <li><a href="#">排名</a></li>
                 <li><a href="./contest.php">竞赛</a></li>
-                <li><a href="#">作业</a></li>
+                <li><a href="./work.php">作业</a></li>
                 <li><a href="#">FAQ</a></li>
                 <?php
                 if(isset($_SESSION['teacherName'])){
@@ -26,7 +26,6 @@
                 <li class='dropdown'>
                     <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>管理<span class='caret'></span></a>
                     <ul class='dropdown-menu' role='menu'>
-                        <li><a href='newClass.php'>创建班级</a></li>
                         <li><a href='newAccount.php'>创建账号</a></li>
                         <li><a href='newContest.php'>创建比赛</a></li>
                         <li><a href='newProblem.php'>创建题目</a></li>

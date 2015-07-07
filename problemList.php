@@ -25,7 +25,7 @@ th,tr,td{text-align: center; }
 require_once("./lib/link_mysqli.php");
 include("top.php");
 $db=new DB();
-$strSQL=sprintf("select * from problem");
+$strSQL=sprintf("select * from problem where isPublish=1");
 $practice=$db->GetData($strSQL);
 ?>
 <div class="container borderPadding">

@@ -48,9 +48,9 @@ if(!isset($_SESSION['teacherName'])){
     <h4>分类</h4>
     <div><span id="sort"></span></div>
     <h4>输入测试</h4>
-    <div><span id="inputDate"></span></div>
+    <div><span id="inputData"></span></div>
     <h4>输出测试</h4>
-    <div><span id="outDate"></span></div>
+    <div><span id="outData"></span></div>
     <!--div><input type="button" onclick="closeWindow()" value="关闭窗口"></div-->
 </div>
 <script type="text/javascript">
@@ -72,8 +72,8 @@ if(!isset($_SESSION['teacherName'])){
         document.getElementById("output").innerHTML=k.document.getElementById("proOutput").value.replace(reg,"<br>");
         document.getElementById("sameInput").innerHTML=k.document.getElementById("proSameInput").value.replace(reg,"<br>");
         document.getElementById("sameOutput").innerHTML=k.document.getElementById("proSameOutput").value.replace(reg,"<br>");
-        document.getElementById("inputDate").innerHTML=k.document.getElementById("inputTestDate").value.replace(reg,"<br>");
-        document.getElementById("outDate").innerHTML=k.document.getElementById("outputTestDate").value.replace(reg,"<br>");
+        document.getElementById("inputData").innerHTML=k.document.getElementById("inputTestData").value.replace(reg,"<br>");
+        document.getElementById("outData").innerHTML=k.document.getElementById("outputTestData").value.replace(reg,"<br>");
         document.getElementById("timeLimit").innerHTML=k.document.getElementById("proTimeLimit").value.replace(reg,"<br>");
         document.getElementById("memoryLimit").innerHTML=k.document.getElementById("proMemoryLimit").value.replace(reg,"<br>");
         document.getElementById("hint").innerHTML=k.document.getElementById("proHint").value.replace(reg,"<br>");

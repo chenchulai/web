@@ -10,7 +10,7 @@ session_start();
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>竞赛</title>
+    <title>作业</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-2.1.4.min.js"></script>
@@ -21,31 +21,31 @@ session_start();
     <script language="JavaScript">
         function ssff(){
             window.showModalDialog("test.html",null,"dialogHeight:300px;dialogWidth:850px;status:no;scroll:yes;resizable:yes;help:no;center:yes;")
-        /*父窗体向子窗体传值
-       1. window.showModalDialog('ChildPage.htm',document.getElementById('txtInput').value);
-         document.getElementById('txtInput').value=window.dialogArguments ;
-        2.var args = new Array();
-         args[0] = document.getElementById('txtInput').value;
-         window.showModalDialog('ChildPage.htm',args);
-         document.getElementById('txtInput').value=window.dialogArguments[0] ;
-         3.var obj = new Object();
-         obj.name = document.getElementById('txtInput').value;
-         window.showModalDialog('ChildPage.htm',obj);
-         var obj = window.dialogArguments;
-         document.getElementById('txtInput').value=obj.name ;
-         子窗体向父窗体传值
-         var obj = new Object();
-         obj.name = document.getElementById('txtInput').value;
-         var result = window.showModalDialog('ChildPage.htm',obj);
-         document.getElementById('txtInput').value = result.name;
-         var obj = window.dialogArguments;
-         document.getElementById('txtInput').value=obj.name ;
+            /*父窗体向子窗体传值
+             1. window.showModalDialog('ChildPage.htm',document.getElementById('txtInput').value);
+             document.getElementById('txtInput').value=window.dialogArguments ;
+             2.var args = new Array();
+             args[0] = document.getElementById('txtInput').value;
+             window.showModalDialog('ChildPage.htm',args);
+             document.getElementById('txtInput').value=window.dialogArguments[0] ;
+             3.var obj = new Object();
+             obj.name = document.getElementById('txtInput').value;
+             window.showModalDialog('ChildPage.htm',obj);
+             var obj = window.dialogArguments;
+             document.getElementById('txtInput').value=obj.name ;
+             子窗体向父窗体传值
+             var obj = new Object();
+             obj.name = document.getElementById('txtInput').value;
+             var result = window.showModalDialog('ChildPage.htm',obj);
+             document.getElementById('txtInput').value = result.name;
+             var obj = window.dialogArguments;
+             document.getElementById('txtInput').value=obj.name ;
 
-         var obj = new Object();
-         obj.name = document.getElementById('txtInput').value;
-         window.returnValue = obj;
-         window.close();
-         */
+             var obj = new Object();
+             obj.name = document.getElementById('txtInput').value;
+             window.returnValue = obj;
+             window.close();
+             */
         }
     </script>
     <style type="text/css">
@@ -63,8 +63,8 @@ session_start();
 
 <body onload="startTime()">
 <?php
-    include("top.php");
-    require_once("./lib/link_mysql.php");
+include("top.php");
+require_once("./lib/link_mysql.php");
 ?>
 
 <div class="container contestCenter">
@@ -73,18 +73,18 @@ session_start();
             <div><h3 class="center">现在时间:<input type="text" id="clock" value="startTime()" disabled="disabled"></h3></div>
             <div>
                 <table class="table-striped table1">
-                   <tr class="row title">
+                    <tr class="row title">
                         <td class="col-md-1 col-xs-1">ID</td>
                         <td class="col-md-4 col-xs-4">标题</td>
                         <td class="col-md-2 col-xs-2">开始时间</td>
                         <td class="col-md-2 col-xs-2">结束时间</td>
-                        <td class="col-md-2 col-xs-2">竞赛状态</td>
+                        <td class="col-md-2 col-xs-2">状态</td>
                         <td class="col-md-1 col-xs-1">是否公开</td>
                     </tr>
                     <?php
                     require_once("./lib/link_mysqli.php");
                     $db = new DB();
-                    $strSQL="select * from contest where contestType='竞赛'";
+                    $strSQL=sprintf('select * from contest where contestType="作业"');
                     $result=$db->GetData($strSQL);
                     $count=$result->num_rows;
                     $records=1;
@@ -115,7 +115,7 @@ session_start();
                     else
                         $previous = $page-1;
                     $nStart=($page-1)*$records;
-                    $strSQL=sprintf("select * from contest where contestType='竞赛' order by contestID ASC limit %d , %d",$nStart,$records);
+                    $strSQL=sprintf("select * from contest where contestType='作业' order by contestID  ASC limit %d , %d",$nStart,$records);
                     $contest = $db->GetData($strSQL);
                     while($line=$contest->fetch_assoc()){
                         if($line['issafe']==0) $publish="否";
@@ -123,9 +123,9 @@ session_start();
                         date_default_timezone_set("PRC");
                         if(date("Y-m-d H:i:s")>$line['contestEndTime']) $status="已结束";
                         else $status="正在进行";
-                       echo "<tr class='row'>
+                        echo "<tr class='row'>
                         <td class='col-md-1 col-xs-1'>{$line['contestID']}</td>
-                        <td class='col-md-4 col-xs-4'><a href='contestDetail.php?contestID={$line['contestID']}'>{$line['contestName']}</a></td>
+                        <td class='col-md-4 col-xs-4'><a href='workDetail.php?contestID={$line['contestID']}'>{$line['contestName']}</a></td>
                         <td class='col-md-2 col-xs-2'>{$line['contestStartTime']}</td>
                         <td class='col-md-2 col-xs-2'>{$line['contestEndTime']}</td>
                         <td class='col-md-2 col-xs-2'>$status</td>
@@ -143,25 +143,25 @@ session_start();
                     else
                         echo "<li>";
 
-                    echo"<a href='contest.php?page=$previous' aria-label='Previous'>";
+                    echo"<a href='work.php?page=$previous' aria-label='Previous'>";
                     ?>
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
                     </li>
-                    <li class="active"><a href="contest.php"><?php echo $page; ?><span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="work.php"><?php echo $page; ?><span class="sr-only">(current)</span></a></li>
                     <?php
                     for($i=$page+1;$i<$count&$i<$page+5;$i++){
-                        echo "<li><a href='contest.php?page=$i'>{$i}</a></li>";
+                        echo "<li><a href='work.php?page=$i'>{$i}</a></li>";
                     }
                     if($page==$countPage+1)
                         echo "<li class='disabled'>";
                     else
                         echo "<li>";
 
-                       echo"<a href='contest.php?page=$next' aria-label='Next'>";
-                        ?>
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
+                    echo"<a href='work.php?page=$next' aria-label='Next'>";
+                    ?>
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
                     </li>
                 </ul>
             </nav>
