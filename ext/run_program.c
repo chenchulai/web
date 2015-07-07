@@ -16,9 +16,8 @@
 #include<sys/resource.h>
 #include<errno.h>
 #include<signal.h>
-//#include"tell_wait.h"
 
-//pid_t pid;
+pid_t pid;
 
 void 
 sig_chld(int signo){
@@ -27,33 +26,35 @@ sig_chld(int signo){
     int ret;
     if ((ret = getrusage(who, &usage)) == -1)
         exit(EXIT_FAILURE);
-    printf("usage.ru_utime.tv_sec=%lu\tusage.ru_utime.tv_usec=%lu\n",usage.ru_utime.tv_sec,usage.ru_utime.tv_usec);
-    printf("usage.ru_utime.tv_sec=%lu\tusage.ru_utime.tv_usec=%lu\n",usage.ru_stime.tv_sec,usage.ru_stime.tv_usec);
-    printf("usage.ru_maxrss=%lu\n",usage.ru_maxrss);
+    printf("%lu\t%lu\n",usage.ru_utime.tv_sec,usage.ru_utime.tv_usec);
+    printf("%lu\t%lu\n",usage.ru_stime.tv_sec,usage.ru_stime.tv_usec);
+    printf("%lu\n",usage.ru_maxrss);
 }
 
 void
 sig_alrm(int signo)
 {
-    printf("time out\n");
-    sig_chld(signo);
-    //向该进程所在进程组发送SIGKILL信号
-    kill(0,SIGKILL);
+    kill(pid,SIGKILL);
 }
 
 int
 main(int argc,char *argv[])
 {
     struct sigaction act_chld,act_alrm;
-    int seconds = 5;//设置进程的最大运行时间
+    int seconds = 5;//设置子进程的最大运行时间
+    int fd[2];
+    if(argc != 3){
+        perror("Usage: run_program $program $inputTestData");
+        exit(EXIT_FAILURE);
+    }
 
-    //构造运行命令 cmdstr < inputfile 2>&1
-    char cmd[512];
-    memset(cmd,'\0',512);
+    //构造运行命令 cmdstr < inputfile
+    int cmd_length = strlen(argv[1]) + strlen(argv[2]) + 5;
+    char *cmd = malloc(cmd_length);
+    memset(cmd,'\0',cmd_length);
     strncat(cmd,argv[1],strlen(argv[1]));
-    strncat(cmd," < ",strlen(" < "));
+    strncat(cmd," ",strlen(" "));
     strncat(cmd,argv[2],strlen(argv[2]));
-    strncat(cmd," 2>&1",strlen(" 2>&1"));
     
     //安装sigchld信号
     //signal(SIGCHLD,sig_chld);
@@ -69,24 +70,25 @@ main(int argc,char *argv[])
     act_alrm.sa_flags = 0;
     if (sigaction(SIGALRM,&act_alrm,NULL) < 0)
         exit(EXIT_FAILURE);
-    
-    alarm(seconds);
-    system(cmd);
-    alarm(0);
 
-    /*TELL_WAIT();
+    //创建管道
+    if (pipe(fd) < 0)
+        exit(EXIT_FAILURE);
     
     //创建子进程
     if((pid = fork()) < 0){
         perror("fork failure");
-        exit(EXIT_FAILURE);
     }else if (pid == 0){
-        WAIT_PARENT();
-        system(cmd);
+        dup2(fd[0],STDIN_FILENO);
+        close(fd[0]);
+        close(fd[1]);
+        execl(argv[1],argv[1],(char *)0,NULL);
     }else{
+        close(fd[0]);
+        write(fd[1],argv[2],strlen(argv[2]));
         alarm(seconds);
-        TELL_CHILD(pid);
         waitpid(pid,NULL,0);
         alarm(0);
-    }*/
+        free(cmd);
+    }
 }

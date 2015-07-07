@@ -19,51 +19,38 @@ session_start();
   <script src="js/offcanvas.js"></script>
 </head>
 <body>
+<?php
+include("./top.php");
+?>
 <div class="container">
-<h3 class="text-center">Submit Your Solution</h3>
-<form class="form-horizontal submit" action="./submit_back.php" method="POST">
+<h3 class="text-center">发布公告</h3>
+<br />
+<form class="form-horizontal submit" action="./newNotice_back.php" method="POST">
 <div class="row">
 <div class="col-md-offset-2 col-md-2 text-right">
-Problem ID：
+<label>公告标题:</label>
 </div>
-<div class="col-sm-4">
-<?php
-echo "<input type='text' class='form-control' name='problemID' value='{$_GET['id']}'/>";
-?>
+<div class="col-md-4">
+<input type='text' class='form-control' name='noticeTitle'/>
 </div>
 </div>
 <br />
-<div class="row">
-<div class="col-md-offset-2 col-md-2 text-right">
-Language：
-</div>
-<div class="col-sm-4">
-<select name="language" class="form-control">
-<option value="c">c</option>
-<option value="c++">c++</option>
-<option value="java">java</option>
-</select>
-</div>
-</div>
 <br />
 <div class="row">
 <div class="col-md-offset-2 col-md-8">
-<textarea class="form-control" name="source" cols="30" rows="18" spellcheck="false">
+<textarea class="form-control" name="content" cols="30" rows="18" spellcheck="false">
 </textarea>
 </div>
 </div>
 <br/>
 <div class="form-group">
-<input type="Submit" class="btn btn-success col-md-2 col-md-offset-5" value="Submit"/> 
+<input type="Submit" class="btn btn-success col-md-2 col-md-offset-5" value="发布"/> 
 </div>
 <br/>
 <br/>
 <br/>
 </form>
 </div>
-<?php
-include("./top.php");
-?>
 <?php
 include("./footer.html");
 ?>

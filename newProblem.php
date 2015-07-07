@@ -37,8 +37,8 @@ if(!isset($_SESSION['teacherName'])){
             var output=document.getElementById("proOutput");
             var sameInput=document.getElementById("proSameInput");
             var sameOutput=document.getElementById("proSameOutput");
-            var inputDate=document.getElementById("inputTestDate");
-            var outDate=document.getElementById("outputTestDate");
+            var inputDate=document.getElementById("inputTestData");
+            var outDate=document.getElementById("outputTestData");
             var timeLimit=document.getElementById("proTimeLimit");
             var memoryLimit=document.getElementById("proMemoryLimit");
             var arr=new Array(title,sort,description,input,output,sameInput,sameOutput,inputDate,outDate,timeLimit,memoryLimit);
@@ -75,7 +75,7 @@ if(!isset($_SESSION['teacherName'])){
         textarea{height:100px; width: 500px; resize: none;}
         span{display: inline-block; width: 300px; text-align: right;line-height: 30px; vertical-align: top; font-size: 16px;}
         .marginTop{margin-top: 50px;}
-        #selectID,#proTitle,#proSort,#proDescription,#proInput,#proOutput,#proSameInput,#proSameOutput,#inputTestDate,#outputTestDate,#proHint,#proTimeLimit,#proMemoryLimit,#isPublish,#notPublish{margin-top:5px;}
+        #selectID,#proTitle,#proSort,#proDescription,#proInput,#proOutput,#proSameInput,#proSameOutput,#inputTestData,#outputTestData,#proHint,#proTimeLimit,#proMemoryLimit,#isPublish,#notPublish{margin-top:5px;}
         #proTitle{width: 200px;}
         #proTimeLimit,#proMemoryLimit{width: 150px;}
         #MemoryLimit{width: 200px;}
@@ -121,8 +121,8 @@ if(!isset($_SESSION['teacherName'])){
         <div><span>输出描述:</span><textarea name="proOutput" id="proOutput"></textarea><span id="hint4">*输出描述</span></div>
         <div><span>输入样例:</span><textarea name="proSameInput" id="proSameInput"></textarea><span id="hint5">*输入样例</span></div>
         <div><span>输出样例:</span><textarea name="proSameOutput" id="proSameOutput"></textarea><span id="hint6">*输出样例</span></div>
-        <div><span>输入测试:</span><textarea name="inputTestDate" id="inputTestDate">无</textarea><span id="hint7">*输入测试</span></div>
-        <div><span>输出测试:</span><textarea name="outputTestDate" id="outputTestDate">无</textarea><span id="hint8">*输出测试</span></div>
+        <div><span>输入测试:</span><textarea name="inputTestData" id="inputTestData">无</textarea><span id="hint7">*输入测试</span></div>
+        <div><span>输出测试:</span><textarea name="outputTestData" id="outputTestData">无</textarea><span id="hint8">*输出测试</span></div>
         <div><span>提示:</span><textarea name="proHint" id="proHint">无</textarea>
         <div><span>时间限制:</span><input type="text" name="proTimeLimit" id="proTimeLimit"><span id="MemoryLimit">内存限制:</span><input type="text" name="proMemoryLimit" id="proMemoryLimit"><span id="hint9">*时间限制</span><span id="hint10">*内存限制</span></div>
         <div><span>是否开放:</span><input type="radio" name="isPublish" value="是" id="isPublish" checked="checked">是<input type="radio" name="isPublish" value="否" id="notPublish">否</div>

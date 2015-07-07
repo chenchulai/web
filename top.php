@@ -15,8 +15,8 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="./problemList.php">问题</a></li>
-                <li><a href="#">状态</a></li>
-                <li><a href="#">排名</a></li>
+                <li><a href="./status.php">状态</a></li>
+                <li><a href="./ranklist.php">排名</a></li>
                 <li><a href="./contest.php">竞赛</a></li>
                 <li><a href="#">作业</a></li>
                 <li><a href="#">FAQ</a></li>
