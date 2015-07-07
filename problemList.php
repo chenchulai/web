@@ -22,15 +22,22 @@ th,tr,td{text-align: center; }
 </head>
 <body>
 <?php
-require_once("./lib/link_mysqli.php");
 include("top.php");
+require_once("./lib/link_mysqli.php");
 $db=new DB();
-$strSQL=sprintf("select * from problem where isPublish=1");
+$sql = sprintf("select count(1) from problem");
+$result = $db->GetData($sql);
+$total_result = mysqli_fetch_array($result)[0];
+$records = 10;
+if (isset($_GET['page']) == null)
+    $page = 1;
+else
+    $page = $_GET['page'];
+$strSQL=sprintf("select * from problem where isPublish=%d limit %d,%d",0,($page-1)*$records,$records);
 $practice=$db->GetData($strSQL);
 ?>
 <div class="container borderPadding">
-    <div class="col-md-10 col-md-offset-1">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
             <tr>
                 <td>题目编号</td>
                 <td>标题</td>
@@ -60,7 +67,27 @@ $practice=$db->GetData($strSQL);
             $db->__destruct();
             ?>
         </table>
-    </div>
+</div>
+<nav class="col-md-4 col-md-offset-4">
+  <ul class="pagination">
+<?php
+//换页功能的实现
+$prevPage = $page-1;
+$nextPage = $page+1;
+if ($page == 1)
+    echo "<li><a href='#' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+else
+    echo "<li><a href='./problemList.php?page={$prevPage}' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+echo "<li class='active'><a href='./problemList.php?page={$page}'>{$page}<span class='sr-only'>(current)</span></a></li>";
+    for($i = $page+1; $i<$page+5 && ($i-1)*$records<=$total_result;$i++)
+        echo "<li><a href='./problemList.php?page={$i}'>{$i}</a></li>";
+if($page*$records >= $total_result)
+    echo "<li><a href='#' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
+else
+    echo "<li><a href='./problemList.php?page={$nextPage}' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
+?>
+  </ul>
+</nav>
 </div>
 <?php
 include("footer.html");

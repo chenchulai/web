@@ -41,14 +41,14 @@ include("./top.php");
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <br /><br />
           <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+<?php
+require_once("./lib/link_mysqli.php");
+$db = new DB();
+$sql = sprintf("select noticeID,noticeTime,noticeTitle from notice order by noticeTime desc limit %d,%d",0,8);
+$result = $db->GetData($sql);
+while($line = $result->fetch_assoc())
+    echo "<a href='./showNotice.php?id={$line['noticeID']}' class='list-group-item'><span class='text-primary'> {$line['noticeTitle']}</span> <br /><small class='text-success'>{$line['noticeTime']}</small></a>";
+?>
           </div>
         </div>
       </div>

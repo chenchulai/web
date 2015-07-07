@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
@@ -25,7 +28,7 @@ Problem ID：
 </div>
 <div class="col-sm-4">
 <?php
-echo "<input type='text' class='form-control' name='problemID' value='{$_GET['problemID']}'/>";
+echo "<input type='text' class='form-control' name='problemID' value='{$_GET['id']}'/>";
 ?>
 </div>
 </div>
@@ -59,7 +62,7 @@ Language：
 </form>
 </div>
 <?php
-include("./top.html");
+include("./top.php");
 ?>
 <?php
 include("./footer.html");

@@ -2,16 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55494360-d7ec-4ed8-b285-92dbfc84be9d" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\WWW\web\contestTest.html" afterPath="" />
-      <change type="DELETED" beforePath="D:\WWW\web\php_errors.log" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contest.js" afterPath="$PROJECT_DIR$/contest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/contest.php" afterPath="$PROJECT_DIR$/contest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newContest.php" afterPath="$PROJECT_DIR$/newContest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/Main_1_3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/Main_1_3_input" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/Main_1_5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/Main_1_5_input" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/Main__3.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/main" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/Main__3.c" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_error.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/input.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/main.c" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newNotice_back.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/problemStatus.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ranklist.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ext/run_program.c" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/showNotice.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/status.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/compile_tmp/tell_wait.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/userStatus.php" />
+      <change type="DELETED" beforePath="D:\WWW\web\compile_tmp\haha_1001" afterPath="" />
+      <change type="DELETED" beforePath="D:\WWW\web\compile_tmp\haha_1001.c" afterPath="" />
+      <change type="DELETED" beforePath="D:\WWW\web\compile_tmp\haha_1001.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compile_tmp/run_program" afterPath="$PROJECT_DIR$/compile_tmp/run_program" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newNotice.php" afterPath="$PROJECT_DIR$/newNotice.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newProblem.php" afterPath="$PROJECT_DIR$/newProblem.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newProblem_back.php" afterPath="$PROJECT_DIR$/newProblem_back.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newProblem_show.php" afterPath="$PROJECT_DIR$/newProblem_show.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/page.php" afterPath="$PROJECT_DIR$/page.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/problem.php" afterPath="$PROJECT_DIR$/problem.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/problemList.php" afterPath="$PROJECT_DIR$/problemList.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compile_tmp/run_program.c" afterPath="$PROJECT_DIR$/compile_tmp/run_program.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_back.php" afterPath="$PROJECT_DIR$/submit_back.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/submit_front.php" afterPath="$PROJECT_DIR$/submit_front.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/top.php" afterPath="$PROJECT_DIR$/top.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -44,29 +65,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="newProblem_back.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="newProblem_back.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newProblem_back.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.166667" vertical-offset="190" max-vertical-offset="1092">
-              <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+            <state vertical-scroll-proportion="1.0801526" vertical-offset="295" max-vertical-offset="1071">
+              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
               <folding>
-                <marker date="1436245901141" expanded="true" signature="702:739" placeholder="select * fro..problem..." />
-                <marker date="1436245901141" expanded="true" signature="702:750" placeholder="select * fro..problem..." />
-                <marker date="1436245901141" expanded="true" signature="702:751" placeholder="select * fro..problem..." />
-                <marker date="1436245901141" expanded="true" signature="920:1168" placeholder="insert into ..." />
-                <marker date="1436245901141" expanded="true" signature="1266:1514" placeholder="update probl..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newProblem.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/newProblem.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7194657" vertical-offset="757" max-vertical-offset="3717">
-              <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
-              <folding>
-                <marker date="1436246456515" expanded="true" signature="6309:6353" placeholder="select proSo..problem..." />
+                <marker date="1436247118611" expanded="true" signature="702:750" placeholder="select * fro..problem..." />
+                <marker date="1436247118611" expanded="true" signature="702:751" placeholder="select * fro..problem..." />
+                <marker date="1436247118611" expanded="true" signature="920:1168" placeholder="insert into ..." />
+                <marker date="1436247118611" expanded="true" signature="1266:1514" placeholder="update probl..." />
+                <marker date="1436247118611" expanded="true" signature="1640:1725" placeholder="insert into ..." />
               </folding>
             </state>
           </provider>
@@ -125,7 +134,6 @@
         <option value="$PROJECT_DIR$/practice_page.php" />
         <option value="$PROJECT_DIR$/newPractice.php" />
         <option value="$PROJECT_DIR$/top.php" />
-        <option value="$PROJECT_DIR$/newNotice.php" />
         <option value="$PROJECT_DIR$/getTime.php" />
         <option value="$PROJECT_DIR$/contest.js" />
         <option value="$PROJECT_DIR$/contestDetail.php" />
@@ -133,9 +141,10 @@
         <option value="$PROJECT_DIR$/footer.html" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/work.php" />
+        <option value="$PROJECT_DIR$/newProblem.php" />
         <option value="$PROJECT_DIR$/problemList.php" />
         <option value="$PROJECT_DIR$/newProblem_back.php" />
-        <option value="$PROJECT_DIR$/newProblem.php" />
+        <option value="$PROJECT_DIR$/newNotice.php" />
       </list>
     </option>
   </component>
@@ -330,7 +339,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="0" width="1355" height="728" extended-state="1" />
+    <frame x="10" y="0" width="1355" height="728" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -403,16 +412,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/newProblem.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2961">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1436246456515" expanded="true" signature="6309:6353" placeholder="select proSo..problem..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33212996" vertical-offset="20291" max-vertical-offset="100821">
@@ -486,13 +485,6 @@
     <entry file="file://$PROJECT_DIR$/footer-fix.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="528">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.23339659" vertical-offset="123" max-vertical-offset="1470">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -609,13 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newNotice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.039106146" vertical-offset="0" max-vertical-offset="537">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newAccount.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.40458" vertical-offset="1260" max-vertical-offset="1974">
@@ -728,13 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/problemList.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59923667" vertical-offset="85" max-vertical-offset="1575">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/problem.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47900763" vertical-offset="211" max-vertical-offset="735">
@@ -742,26 +720,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newProblem_back.php">
+    <entry file="file://$PROJECT_DIR$/newNotice_back.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.166667" vertical-offset="190" max-vertical-offset="1092">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436245901141" expanded="true" signature="702:739" placeholder="select * fro..problem..." />
-            <marker date="1436245901141" expanded="true" signature="702:750" placeholder="select * fro..problem..." />
-            <marker date="1436245901141" expanded="true" signature="702:751" placeholder="select * fro..problem..." />
-            <marker date="1436245901141" expanded="true" signature="920:1168" placeholder="insert into ..." />
-            <marker date="1436245901141" expanded="true" signature="1266:1514" placeholder="update probl..." />
+            <marker date="1436246800599" expanded="true" signature="-1:-1" placeholder="insert into ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0038168" vertical-offset="757" max-vertical-offset="1470">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding>
+            <marker date="1436246800598" expanded="true" signature="-1:-1" placeholder="select notic..notice..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newNotice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1955308" vertical-offset="471" max-vertical-offset="1323">
+          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userStatus.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.24045801" vertical-offset="126" max-vertical-offset="1512">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1436246800625" expanded="true" signature="-1:-1" placeholder="select userI..account..." />
+            <marker date="1436246800625" expanded="true" signature="-1:-1" placeholder="select proID..userSubmitProblem..." />
+            <marker date="1436246800625" expanded="true" signature="-1:-1" placeholder="select proID..userSubmitProblem..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newProblem.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7194657" vertical-offset="757" max-vertical-offset="3717">
-          <caret line="54" column="24" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="24" />
+        <state vertical-scroll-proportion="2.0019083" vertical-offset="2458" max-vertical-offset="3738">
+          <caret line="167" column="5" selection-start-line="167" selection-start-column="5" selection-end-line="167" selection-end-column="5" />
           <folding>
-            <marker date="1436246456515" expanded="true" signature="6309:6353" placeholder="select proSo..problem..." />
+            <marker date="1436246893166" expanded="true" signature="-1:-1" placeholder="select proSo..problem..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/problemList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.0877862" vertical-offset="1618" max-vertical-offset="2142">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1436246893150" expanded="true" signature="-1:-1" placeholder="select count..problem..." />
+            <marker date="1436246893150" expanded="true" signature="-1:-1" placeholder="select * fro..problem..." />
+            <marker date="1436246893150" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1436246893150" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1436246893150" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newProblem_back.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0801526" vertical-offset="295" max-vertical-offset="1071">
+          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+          <folding>
+            <marker date="1436247118611" expanded="true" signature="702:750" placeholder="select * fro..problem..." />
+            <marker date="1436247118611" expanded="true" signature="702:751" placeholder="select * fro..problem..." />
+            <marker date="1436247118611" expanded="true" signature="920:1168" placeholder="insert into ..." />
+            <marker date="1436247118611" expanded="true" signature="1266:1514" placeholder="update probl..." />
+            <marker date="1436247118611" expanded="true" signature="1640:1725" placeholder="insert into ..." />
           </folding>
         </state>
       </provider>

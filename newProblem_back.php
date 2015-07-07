@@ -40,8 +40,6 @@ elseif($state=="del"){
     $sql="delete problem where proTitle='$proTitle' and teacherID=$teacherID";
 }
 else{header("location:newProblem.php");}
-
-
 header("refresh:1;url=http://localhost/web/newProblem.php");
 print('正在处理，请稍等...<br>1秒后自动跳转。');
 ?>
