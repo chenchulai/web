@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -43,7 +43,7 @@ $contest=$result->fetch_assoc();
     <div><span>现在时间：</span><span id="getTime"></span></div>
     <div><div>竞赛说明：</div><div id="Explain"><?php echo $contest["contestExplain"]?></div></div>
     <div>
-        <table class="table">
+        <table class="table table-bordered">
             <tr>
                 <th>题目编号</th>
                 <th>标题</th>

@@ -18,6 +18,7 @@
     <style type="text/css">
 .borderPadding{padding-top:70px;}
 th,tr,td{text-align: center; }
+
     </style>
 </head>
 <body>
@@ -25,15 +26,15 @@ th,tr,td{text-align: center; }
 include("top.php");
 require_once("./lib/link_mysqli.php");
 $db=new DB();
-$sql = sprintf("select count(1) from problem");
+$sql = sprintf("select count(1) from problem where isPublish='1'");
 $result = $db->GetData($sql);
 $total_result = mysqli_fetch_array($result)[0];
-$records = 10;
+$records = 1;
 if (isset($_GET['page']) == null)
     $page = 1;
 else
     $page = $_GET['page'];
-$strSQL=sprintf("select * from problem where isPublish=%d limit %d,%d",0,($page-1)*$records,$records);
+$strSQL=sprintf("select * from problem where isPublish=%d limit %d,%d",1,($page-1)*$records,$records);
 $practice=$db->GetData($strSQL);
 ?>
 <div class="container borderPadding">
@@ -78,8 +79,11 @@ if ($page == 1)
     echo "<li><a href='#' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 else
     echo "<li><a href='./problemList.php?page={$prevPage}' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+for($i=$page-5;$i<$page;$i++)
+    if($i>=1&&($i-1)*$records<$total_result)
+        echo "<li><a href='./problemList.php?page={$i}'>{$i}</a></li>";
 echo "<li class='active'><a href='./problemList.php?page={$page}'>{$page}<span class='sr-only'>(current)</span></a></li>";
-    for($i = $page+1; $i<$page+5 && ($i-1)*$records<=$total_result;$i++)
+    for($i = $page+1; $i<$page+5 && ($i)*$records<$total_result;$i++)
         echo "<li><a href='./problemList.php?page={$i}'>{$i}</a></li>";
 if($page*$records >= $total_result)
     echo "<li><a href='#' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
@@ -90,7 +94,7 @@ else
 </nav>
 </div>
 <?php
-include("footer.html");
+include("footer-fix.html");
 ?>
 </body>
 </html>

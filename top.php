@@ -1,6 +1,18 @@
 <?php
 @header('Content-type: text/html;charset=UTF-8');
 ?>
+<?php
+if(isset($_SESSION['teacherName'])){
+    echo "
+<div class='panel-primary center-block' style='top:30%;left:0;width: 6%;position: fixed;height:30px;font-size: 10px;text-align: center;'>
+    <div class='panel-heading'>管理</div>
+        <ul class='list-group'>
+            <li class='list-group-item bg-info'><a href='newProblem.php'>问题</a></li>
+            <li class='list-group-item'><a href='newContest.php'>作业竞赛</a></li>
+            <li class='list-group-item'><a href='newAccount.php'>班级学生</a></li>
+            <li class='list-group-item'><a href='newNotice.php'>发布公告</a></li>
+        </ul>
+    </div>";}?>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -20,20 +32,6 @@
                 <li><a href="./contest.php">竞赛</a></li>
                 <li><a href="./work.php">作业</a></li>
                 <li><a href="#">FAQ</a></li>
-                <?php
-                if(isset($_SESSION['teacherName'])){
-                echo "
-                <li class='dropdown'>
-                    <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>管理<span class='caret'></span></a>
-                    <ul class='dropdown-menu' role='menu'>
-                        <li><a href='newAccount.php'>创建账号</a></li>
-                        <li><a href='newContest.php'>创建比赛</a></li>
-                        <li><a href='newProblem.php'>创建题目</a></li>
-                        <li><a href='newPractice.php'>发布练习</a></li>
-                        <li><a href='newNotice.php'>发布公告</a></li>
-                    </ul>
-                </li>";}
-                ?>
             </ul>
             <?php
             if(isset($_SESSION['userName'])) {

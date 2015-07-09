@@ -79,7 +79,7 @@ session_start();
                         <td class="col-md-2 col-xs-2">开始时间</td>
                         <td class="col-md-2 col-xs-2">结束时间</td>
                         <td class="col-md-2 col-xs-2">竞赛状态</td>
-                        <td class="col-md-1 col-xs-1">是否公开</td>
+                        <td class="col-md-1 col-xs-1">是否私有</td>
                     </tr>
                     <?php
                     require_once("./lib/link_mysqli.php");
@@ -135,41 +135,34 @@ session_start();
                     ?>
                 </table>
             </div>
-            <nav>
+            <nav class="col-md-4 col-md-offset-4">
                 <ul class="pagination">
                     <?php
-                    if($page==1)
-                        echo "<li class='disabled'>";
+                    //换页功能的实现
+                    $prevPage = $page-1;
+                    $nextPage = $page+1;
+                    if ($page == 1)
+                        echo "<li><a href='#' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
                     else
-                        echo "<li>";
-
-                    echo"<a href='contest.php?page=$previous' aria-label='Previous'>";
+                        echo "<li><a href='./contest.php?page={$prevPage}' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+                    for($i=$page-5;$i<$page;$i++)
+                        if($i>=1&&$i-1<$countPage)
+                            echo "<li><a href='./contest.php?page={$i}'>{$i}</a></li>";
+                    echo "<li class='active'><a href='./contest.php?page={$page}'>{$page}<span class='sr-only'>(current)</span></a></li>";
+                    for($i = $page+1; $i<$page+5 && $i-1<$countPage;$i++)
+                        echo "<li><a href='./contest.php?page={$i}'>{$i}</a></li>";
+                    if($page>= $countPage)
+                        echo "<li><a href='#' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
+                    else
+                        echo "<li><a href='./contest.php?page={$nextPage}' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
                     ?>
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="active"><a href="contest.php"><?php echo $page; ?><span class="sr-only">(current)</span></a></li>
-                    <?php
-                    for($i=$page+1;$i<$count&$i<$page+5;$i++){
-                        echo "<li><a href='contest.php?page=$i'>{$i}</a></li>";
-                    }
-                    if($page==$countPage+1)
-                        echo "<li class='disabled'>";
-                    else
-                        echo "<li>";
-
-                       echo"<a href='contest.php?page=$next' aria-label='Next'>";
-                        ?>
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </form>
     </div>
 </div>
 <?php
-include("footer.html");
+include("footer-fix.html");
 ?>
 
 

@@ -96,7 +96,7 @@ else
 </nav>
 </div>
 <?php
-require_once("./footer.html");
+require_once("./footer-fix.html");
 ?>
 </body>
 </html>
